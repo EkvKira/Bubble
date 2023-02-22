@@ -29,6 +29,7 @@ public class Board implements IKeyListener {
     private GraphicsContext bggc;
     private Dimension2D original_size;
     private Bubble ball;
+    private Shuttle shuttle;
 
     private boolean debug;
     private boolean left_press, right_press;
@@ -44,7 +45,8 @@ public class Board implements IKeyListener {
         this.original_size = original;
         this.right_press = false;
         this.left_press = false;
-
+        this.shuttle = new Shuttle(new Point2D((this.game_zone.getMaxX() - this.game_zone.getWidth() / 2), (this.game_zone.getMaxY() - 18)));
+    
         this.debug = false;
 
     }
@@ -117,6 +119,7 @@ public class Board implements IKeyListener {
         //actualizar el juego
 if (this.ball != null && this.ball.getBalltype() != null) {
  this.ball.move(this.game_zone);
+ this.shuttle.paint(gc);
  }
 
     }
@@ -124,7 +127,9 @@ if (this.ball != null && this.ball.getBalltype() != null) {
     private void render() {
         if (this.ball != null && this.ball.getBalltype() != null) {
         this.ball.paint(gc);
- }
+        
+  }
+        this.shuttle.paint(gc);
 
     }
 
@@ -153,14 +158,16 @@ if (this.ball != null && this.ball.getBalltype() != null) {
         Image imagen = Resources.getInstance().getImage("fondos");
         this.bggc.drawImage(imagen,
                 //se obtiene del original
-                16,17, 
+                345,280, //dlya izmenenia ecrana
                 this.original_size.getWidth(),
                 this.original_size.getHeight(),
                 //se pinta en el lienzo
-                2,2,
+                1,1,
                 this.original_size.getWidth()*Game.SCALE,
                 this.original_size.getHeight()*Game.SCALE
         );
+        
+        
         //se dibuja la línea del fondo
         if (this.debug) {
             this.Debug();
@@ -181,7 +188,9 @@ if (this.ball != null && this.ball.getBalltype() != null) {
                 break;
             case RIGHT:
                 this.right_press = true;
+                
                 break;
+                
         }
     }
 
@@ -190,9 +199,12 @@ if (this.ball != null && this.ball.getBalltype() != null) {
         switch (code) {
             case LEFT:
                 this.left_press = false;
+                this.shuttle.moveLeft();
                 break;
             case RIGHT:
                 this.right_press = false;
+                this.shuttle.moveRight();
+              
                 break;
             case ENTER:
 

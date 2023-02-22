@@ -19,10 +19,11 @@ public class Bubble {
     private float velocidad = 1f;
     private BubbleType balltype;
     public static int WIDTH = 16, HEIGHT = 16;
+    
     public Bubble(double x, double y, BubbleType balltype) {
-    this.estado = State.STOP;
-    this.posicion = new Point2D(x, y);
-    this.balltype = balltype;
+        this.estado = State.STOP;
+        this.posicion = new Point2D(x, y);
+        this.balltype = balltype;
     }
  
  public Bubble() {
