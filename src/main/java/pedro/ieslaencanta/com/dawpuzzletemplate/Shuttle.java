@@ -16,12 +16,12 @@ import static pedro.ieslaencanta.com.dawpuzzletemplate.Bubble.WIDTH;
  */
 public class Shuttle {
     private Point2D posicion;
-    private float angulo=20;
+    private float angulo=0;
     private float velocidad = 1f;
     private Bubble next;
     private Bubble actual;
-    private static int WIDTH=60 ;
-    private static int HEIGHT=60;
+    private static int WIDTH=64 ;
+    private static int HEIGHT=65;
     private int ImageX=1040;
     private int ImageY=0;
     
@@ -34,10 +34,18 @@ public class Shuttle {
     }
     
     public void paint(GraphicsContext gc) {
-        float count_angulo=angulo/1.4f;
-        this.ImageY=(int)(count_angulo/16);
-        this.ImageX=(int)(16-(count_angulo/16));
-                
+        if(this.angulo==0){
+        this.ImageX=1040;
+        this.ImageY=0;
+        }
+        else {
+        int count_angulo=(int)(angulo/1.4);
+        this.ImageY=(int)((count_angulo/16))*60;
+        this.ImageX=1040+(count_angulo-((this.ImageY/60)-1)*16)*65;
+        if(this.ImageX > 2080){
+            ImageX-= 1040;
+        }
+    }
         Resources r = Resources.getInstance();
         gc.drawImage(r.getImage("arrow"),
         //inicio de la posicion
@@ -55,11 +63,11 @@ public class Shuttle {
     }
     
     public void moveLeft(){
-        this.angulo+=1.4f;
+        this.angulo-=1.4f;
     }
 
     public void moveRight(){
-        this.angulo-=1.4f;
+        this.angulo+=1.4f;
     }
     
 }
