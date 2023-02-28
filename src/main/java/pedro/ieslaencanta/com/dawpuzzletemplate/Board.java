@@ -200,6 +200,10 @@ public class Board implements IKeyListener {
             case RIGHT:
                 this.right_press = true;
                 this.shuttle.moveRight();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9f63bb0fb8b2cfaee2fe868b3c5142c4f26b21ba
                 break;
 
         }

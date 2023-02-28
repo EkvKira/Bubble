@@ -21,7 +21,7 @@ public class Shuttle {
     private Bubble next;
     private Bubble actual;
     private static int WIDTH=65 ;
-    private static int HEIGHT=65;
+    private static int HEIGHT=64;
     private int ImageX=1;
     private int ImageY=1548;
     private boolean debug;
@@ -68,6 +68,17 @@ public class Shuttle {
             ImageX-= 1040;
         }
         
+        }
+        if(this.ImageY > 1744){
+            if (angulo > 0) {
+                this.ImageX = 976;
+                this.ImageY = 1743;
+                this.angulo = 91;
+            }else {
+                this.ImageX = 976;
+                this.ImageY = 1743;
+                this.angulo = -91;
+            }
         }
         
         Resources r = Resources.getInstance();
