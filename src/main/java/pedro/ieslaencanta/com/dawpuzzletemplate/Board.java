@@ -30,7 +30,7 @@ public class Board implements IKeyListener {
     private Dimension2D original_size;
     private Bubble ball;
     private Shuttle shuttle;
-
+    private boolean pause;
     private boolean debug;
     private boolean left_press, right_press;
 
@@ -46,8 +46,10 @@ public class Board implements IKeyListener {
         this.right_press = false;
         this.left_press = false;
         this.shuttle = new Shuttle(new Point2D((this.game_zone.getMaxX() - this.game_zone.getWidth() / 2), (this.game_zone.getMaxY() - 18)));
-    
+
         this.debug = false;
+        this.setDebug(true);
+        this.pause = false;
 
     }
 
@@ -91,6 +93,10 @@ public class Board implements IKeyListener {
      */
     public void setDebug(boolean debug) {
         this.debug = debug;
+        this.shuttle.setDebug(debug);
+        if (this.ball != null) {
+            this.ball.setDebug(debug);
+        }
 
     }
 
@@ -108,27 +114,29 @@ public class Board implements IKeyListener {
      * cuando se produce un evento
      */
     public synchronized void TicTac() {
-        this.clear();
-        this.render();
-        this.process_input();
-        //actualizar
-        this.update();
+        if (!this.pause) {
+            this.clear();
+            this.render();
+            this.process_input();
+            //actualizar
+            this.update();
+        }
     }
 
     private void update() {
         //actualizar el juego
-if (this.ball != null && this.ball.getBalltype() != null) {
- this.ball.move(this.game_zone);
- this.shuttle.paint(gc);
- }
+        if (this.ball != null && this.ball.getBalltype() != null) {
+            this.ball.move(this.game_zone);
+            this.shuttle.paint(gc);
+        }
 
     }
 
     private void render() {
         if (this.ball != null && this.ball.getBalltype() != null) {
-        this.ball.paint(gc);
-        
-  }
+            this.ball.paint(gc);
+
+        }
         this.shuttle.paint(gc);
 
     }
@@ -158,18 +166,17 @@ if (this.ball != null && this.ball.getBalltype() != null) {
         Image imagen = Resources.getInstance().getImage("fondos");
         this.bggc.drawImage(imagen,
                 //se obtiene del original
-                345,280, //dlya izmenenia ecrana
+                345, 280, //dlya izmenenia ecrana
                 this.original_size.getWidth(),
                 this.original_size.getHeight(),
                 //se pinta en el lienzo
-                1,1,
-                this.original_size.getWidth()*Game.SCALE,
-                this.original_size.getHeight()*Game.SCALE
+                1, 1,
+                this.original_size.getWidth() * Game.SCALE,
+                this.original_size.getHeight() * Game.SCALE
         );
-        
-        
+
         //se dibuja la línea del fondo
-        if (this.debug) {
+        if (this.isDebug()) {
             this.Debug();
         }
 
@@ -188,9 +195,9 @@ if (this.ball != null && this.ball.getBalltype() != null) {
                 break;
             case RIGHT:
                 this.right_press = true;
-                
+
                 break;
-                
+
         }
     }
 
@@ -204,7 +211,7 @@ if (this.ball != null && this.ball.getBalltype() != null) {
             case RIGHT:
                 this.right_press = false;
                 this.shuttle.moveRight();
-              
+
                 break;
             case ENTER:
 
@@ -212,18 +219,18 @@ if (this.ball != null && this.ball.getBalltype() != null) {
                 break;
             case SPACE:
 
- //se crea
- this.ball=new Bubble();
- //se coloca el tipo de forma aleatorioa
- this.ball.setBalltype(BubbleType.values()[ (int)
-(Math.random()*BubbleType.values().length)]);
- //se pone la posición (centro) y ángulo aleatorio
- this.ball.init(new Point2D((this.game_zone.getMaxX() - this.game_zone.getWidth() / 2),
- (this.game_zone.getMaxY() - 18)), (float) (Math.random()*360));
- this.ball.play();
+                //se crea
+                this.ball = new Bubble();
+                this.ball.setDebug(debug);
+                //se coloca el tipo de forma aleatorioa
+                this.ball.setBalltype(BubbleType.values()[(int) (Math.random() * BubbleType.values().length)]);
+                //se pone la posición (centro) y ángulo aleatorio
+                this.ball.init(new Point2D((this.game_zone.getMaxX() - this.game_zone.getWidth() / 2),
+                        (this.game_zone.getMaxY() - 18)), (float) (Math.random() * 360));
+                this.ball.play();
                 break;
             case P:
-
+                this.pause=!this.pause;
                 break;
             case E:
                 break;
