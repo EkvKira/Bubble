@@ -30,6 +30,7 @@ public class Board implements IKeyListener {
     private Dimension2D original_size;
     private Bubble ball;
     private Shuttle shuttle;
+    private ShuttleGrand shuttlegrand;
     private boolean pause;
     private boolean debug;
     private boolean left_press, right_press;
@@ -46,7 +47,7 @@ public class Board implements IKeyListener {
         this.right_press = false;
         this.left_press = false;
         this.shuttle = new Shuttle(new Point2D((this.game_zone.getMaxX() - this.game_zone.getWidth() / 2), (this.game_zone.getMaxY() - 18)));
-
+        this.shuttlegrand = new ShuttleGrand(new Point2D((this.game_zone.getMaxX() - this.game_zone.getWidth() / 2), (this.game_zone.getMaxY() - 18)));
         this.debug = false;
         this.setDebug(true);
         this.pause = false;
@@ -128,6 +129,7 @@ public class Board implements IKeyListener {
         if (this.ball != null && this.ball.getBalltype() != null) {
             this.ball.move(this.game_zone);
             this.shuttle.paint(gc);
+            this.shuttlegrand.paint(gc);
         }
 
     }
@@ -138,6 +140,7 @@ public class Board implements IKeyListener {
 
         }
         this.shuttle.paint(gc);
+        this.shuttlegrand.paint(gc);
 
     }
 
@@ -192,10 +195,11 @@ public class Board implements IKeyListener {
         switch (code) {
             case LEFT:
                 this.left_press = true;
+                this.shuttle.moveLeft();
                 break;
             case RIGHT:
                 this.right_press = true;
-
+                this.shuttle.moveRight();
                 break;
 
         }

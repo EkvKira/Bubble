@@ -79,10 +79,10 @@ public class Shuttle {
         Shuttle.WIDTH,
         Shuttle.HEIGHT,
         //dibujar en el lienzo
-        (this.posicion.getX() - Shuttle.WIDTH / 3) * Game.SCALE,
-        (this.posicion.getY() - Shuttle.HEIGHT / 3) * Game.SCALE,
-        Shuttle.WIDTH * Game.SCALE/2,
-        Shuttle.HEIGHT * Game.SCALE/2);
+        (this.posicion.getX() - Shuttle.WIDTH / 2) * Game.SCALE,
+        (this.posicion.getY() - Shuttle.HEIGHT / 2) * Game.SCALE,
+        Shuttle.WIDTH * Game.SCALE,
+        Shuttle.HEIGHT * Game.SCALE);
         //si se esta depurando
         }
         else {
