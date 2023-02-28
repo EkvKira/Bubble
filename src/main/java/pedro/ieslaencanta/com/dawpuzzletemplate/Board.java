@@ -192,9 +192,11 @@ public class Board implements IKeyListener {
         switch (code) {
             case LEFT:
                 this.left_press = true;
+                this.shuttle.moveLeft();
                 break;
             case RIGHT:
                 this.right_press = true;
+                this.shuttle.moveRight();
 
                 break;
 
