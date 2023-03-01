@@ -20,7 +20,7 @@ public class Shuttle {
     private float velocidad = 1f;
     private Bubble next;
     private Bubble actual;
-    private static int WIDTH=65 ;
+    private static int WIDTH=64 ;
     private static int HEIGHT=64;
     private int ImageX=1;
     private int ImageY=1548;
@@ -107,10 +107,10 @@ public class Shuttle {
         hgg,
         Shuttle.HEIGHT,
         //dibujar en el lienzo
-        (this.posicion.getX() - Shuttle.WIDTH / 3) * Game.SCALE,
-        (this.posicion.getY() - Shuttle.HEIGHT / 3) * Game.SCALE,
-        Shuttle.WIDTH * Game.SCALE/2,
-        Shuttle.HEIGHT * Game.SCALE/2);
+        (this.posicion.getX() - Shuttle.WIDTH / 2) * Game.SCALE,
+        (this.posicion.getY() - Shuttle.HEIGHT / 2) * Game.SCALE,
+        Shuttle.WIDTH * Game.SCALE,
+        Shuttle.HEIGHT * Game.SCALE);
         //si se esta depurando
         }
     }

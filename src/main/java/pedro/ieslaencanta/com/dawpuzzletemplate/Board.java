@@ -128,8 +128,9 @@ public class Board implements IKeyListener {
         //actualizar el juego
         if (this.ball != null && this.ball.getBalltype() != null) {
             this.ball.move(this.game_zone);
-            this.shuttle.paint(gc);
             this.shuttlegrand.paint(gc);
+            this.shuttle.paint(gc);
+            
         }
 
     }
@@ -139,8 +140,9 @@ public class Board implements IKeyListener {
             this.ball.paint(gc);
 
         }
-        this.shuttle.paint(gc);
         this.shuttlegrand.paint(gc);
+        this.shuttle.paint(gc);
+        
 
     }
 
@@ -200,10 +202,10 @@ public class Board implements IKeyListener {
             case RIGHT:
                 this.right_press = true;
                 this.shuttle.moveRight();
-<<<<<<< HEAD
-=======
-
->>>>>>> 9f63bb0fb8b2cfaee2fe868b3c5142c4f26b21ba
+//<<<<<<< HEAD
+//=======
+//
+//>>>>>>> 9f63bb0fb8b2cfaee2fe868b3c5142c4f26b21ba
                 break;
 
         }
@@ -215,10 +217,12 @@ public class Board implements IKeyListener {
             case LEFT:
                 this.left_press = false;
                 this.shuttle.moveLeft();
+                this.shuttlegrand.moveLeft();
                 break;
             case RIGHT:
                 this.right_press = false;
                 this.shuttle.moveRight();
+                this.shuttlegrand.moveRight();
 
                 break;
             case ENTER:

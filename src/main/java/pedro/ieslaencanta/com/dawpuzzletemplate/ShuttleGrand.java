@@ -17,10 +17,10 @@ public class ShuttleGrand {
     private float velocidad = 1f;
     private Bubble next;
     private Bubble actual;
-    private static int WIDTH=65 ;
+    private static int WIDTH=65;
     private static int HEIGHT=40;
     private int ImageX=1;
-    private int ImageY=1808;
+    private int ImageY=1805;
     private boolean debug;
     
     public ShuttleGrand(Point2D posicion) {
@@ -38,11 +38,34 @@ public class ShuttleGrand {
     }
     
     public void paint(GraphicsContext gc) {
+            if(this.angulo==0){
+                this.ImageX=1;
+                this.ImageY=1805;
+            }
+            else {
+                int count_angulo=(int)(angulo/1.4);
+                if(count_angulo<0){
+                count_angulo=-count_angulo;
+                }
+                this.ImageY=((int)(((count_angulo/16))*40)+1805);
+                this.ImageX=1+(count_angulo-(((this.ImageY-1805)/65)-1)*16)*65;
+                    if(this.ImageX > 716){
+                        ImageX-= 716;
+                    }
+            }      
+//        if(this.ImageX > 716){
+//            if (angulo > 0) {
+//                this.ImageX = 976;
+//                this.ImageY = 1743;
+//                this.angulo = 91;
+//            }else {
+//                this.ImageX = 976;
+//                this.ImageY = 1743;
+//                this.angulo = -91;
+//            }
+//        }
+        Resources r = Resources.getInstance();
         
-        this.ImageX=1;
-        this.ImageY=1808;
-        
-         Resources r = Resources.getInstance();
         gc.drawImage(r.getImage("spriters"),
         //inicio de la posicion
         this.ImageX,
@@ -55,4 +78,12 @@ public class ShuttleGrand {
         ShuttleGrand.WIDTH * Game.SCALE,
         ShuttleGrand.HEIGHT * Game.SCALE);
     }
+    
+    public void moveLeft(){
+        this.angulo-=1.4f;
+    }
+    public void moveRight(){
+        this.angulo+=1.4f;
+    }
+    
 }
