@@ -17,10 +17,10 @@ public class ShuttleGrand {
     private float velocidad = 1f;
     private Bubble next;
     private Bubble actual;
-    private static int WIDTH=65 ;
+    private static int WIDTH=60 ;
     private static int HEIGHT=40;
     private int ImageX=1;
-    private int ImageY=1808;
+    private int ImageY=1805;
     private boolean debug;
     
     public ShuttleGrand(Point2D posicion) {
@@ -40,7 +40,7 @@ public class ShuttleGrand {
     public void paint(GraphicsContext gc) {
         
         this.ImageX=1;
-        this.ImageY=1808;
+        this.ImageY=1805;
         
          Resources r = Resources.getInstance();
         gc.drawImage(r.getImage("spriters"),
