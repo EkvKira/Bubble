@@ -21,15 +21,15 @@ public class Shuttle {
     private float velocidad = 1f;
     private Bubble next;
     private Bubble actual;
-<<<<<<< HEAD
-    private static int WIDTH=64 ;
-    private static int HEIGHT=64;
-    private int ImageX=1;
-=======
+//<<<<<<< HEAD
+//    private static int WIDTH=64 ;
+//    private static int HEIGHT=64;
+//    private int ImageX=1;
+//=======
     private static int WIDTH=62 ;
     private static int HEIGHT=60;
     private int ImageX=2;
->>>>>>> 3360aee1f8dbf12c6226056e1e5d5d21619f647a
+//>>>>>>> 3360aee1f8dbf12c6226056e1e5d5d21619f647a
     private int ImageY=1548;
     private boolean debug;
     private Bubble ball;
