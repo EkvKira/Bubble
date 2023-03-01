@@ -17,7 +17,11 @@ public class ShuttleGrand {
     private float velocidad = 1f;
     private Bubble next;
     private Bubble actual;
+<<<<<<< HEAD
     private static int WIDTH=65;
+=======
+    private static int WIDTH=60 ;
+>>>>>>> 3360aee1f8dbf12c6226056e1e5d5d21619f647a
     private static int HEIGHT=40;
     private int ImageX=1;
     private int ImageY=1805;
@@ -66,6 +70,13 @@ public class ShuttleGrand {
 //        }
         Resources r = Resources.getInstance();
         
+<<<<<<< HEAD
+=======
+        this.ImageX=1;
+        this.ImageY=1805;
+        
+         Resources r = Resources.getInstance();
+>>>>>>> 3360aee1f8dbf12c6226056e1e5d5d21619f647a
         gc.drawImage(r.getImage("spriters"),
         //inicio de la posicion
         this.ImageX,

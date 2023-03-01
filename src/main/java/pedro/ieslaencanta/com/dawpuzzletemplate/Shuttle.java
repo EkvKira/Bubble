@@ -5,6 +5,7 @@
 package pedro.ieslaencanta.com.dawpuzzletemplate;
 
 import javafx.geometry.Point2D;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import static pedro.ieslaencanta.com.dawpuzzletemplate.Bubble.HEIGHT;
@@ -20,15 +21,31 @@ public class Shuttle {
     private float velocidad = 1f;
     private Bubble next;
     private Bubble actual;
+<<<<<<< HEAD
     private static int WIDTH=64 ;
     private static int HEIGHT=64;
     private int ImageX=1;
+=======
+    private static int WIDTH=62 ;
+    private static int HEIGHT=60;
+    private int ImageX=2;
+>>>>>>> 3360aee1f8dbf12c6226056e1e5d5d21619f647a
     private int ImageY=1548;
     private boolean debug;
-  
+    private Bubble ball;
 
-    public Shuttle(Point2D posicion) {
+    private Rectangle2D game_zone;
+    public Shuttle(Point2D posicion, Rectangle2D game_zone) {
         this.posicion = posicion;
+        this.game_zone = game_zone;
+    }
+
+    public Bubble getBall() {
+        return ball;
+    }
+
+    public void setBall(Bubble ball) {
+        this.ball = ball;
     }
 
     public Shuttle() {
@@ -39,7 +56,7 @@ public class Shuttle {
             }
     public void paint(GraphicsContext gc) {
         if(this.angulo==0){
-        this.ImageX=1;
+        this.ImageX=2;
         this.ImageY=1548;
         }
 //        else if (this.angulo<0){
@@ -70,7 +87,7 @@ public class Shuttle {
         
         }
         if(this.ImageY > 1744){
-            if (angulo > 0) {
+            if (angulo >= 0) {
                 this.ImageX = 976;
                 this.ImageY = 1743;
                 this.angulo = 91;
@@ -122,6 +139,16 @@ public class Shuttle {
     public void moveRight(){
         this.angulo+=1.4f;
     }
-    
+
+    public void shoot() {
+        this.ball = new Bubble();
+        this.ball.setDebug(debug);
+        //se coloca el tipo de forma aleatorioa
+        this.ball.setBalltype(BubbleType.values()[(int) (Math.random() * BubbleType.values().length)]);
+        //se pone la posición (centro) y ángulo aleatorio
+        this.ball.init(new Point2D((this.game_zone.getMaxX() - this.game_zone.getWidth() / 2),
+                (this.game_zone.getMaxY() - 18)), (float) (angulo-90));
+        this.ball.play();
+    }
 }
 
