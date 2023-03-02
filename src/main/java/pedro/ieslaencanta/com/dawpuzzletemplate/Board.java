@@ -204,10 +204,12 @@ public class Board implements IKeyListener {
             case LEFT:
                 this.left_press = true;
                 this.shuttle.moveLeft();
+                 this.shuttlegrand.moveLeft();
                 break;
             case RIGHT:
                 this.right_press = true;
                 this.shuttle.moveRight();
+                this.shuttlegrand.moveRight();
 //<<<<<<< HEAD
 ////<<<<<<< HEAD
 ////=======

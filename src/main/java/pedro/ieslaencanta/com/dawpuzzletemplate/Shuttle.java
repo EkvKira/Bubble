@@ -15,8 +15,8 @@ import static pedro.ieslaencanta.com.dawpuzzletemplate.Bubble.WIDTH;
  *
  * @author kirae
  */
-public class Shuttle {
-    private Point2D posicion;
+public class Shuttle { // se llama Shuttle, pero esto flecha
+    private Point2D posicion; 
     private float angulo=0;
     private float velocidad = 1f;
     private Bubble next;
@@ -26,7 +26,7 @@ public class Shuttle {
 //    private static int HEIGHT=64;
 //    private int ImageX=1;
 //=======
-    private static int WIDTH=62 ;
+    private static int WIDTH=62;
     private static int HEIGHT=60;
     private int ImageX=2;
 //>>>>>>> 3360aee1f8dbf12c6226056e1e5d5d21619f647a
@@ -82,7 +82,7 @@ public class Shuttle {
         this.ImageY=((int)(((count_angulo/16))*65)+1548);
         this.ImageX=1+(count_angulo-(((this.ImageY-1548)/65)-1)*16)*65;
         if(this.ImageX > 1040){
-            ImageX-= 1040;
+            this.ImageX-= 1040;
         }
         
         }
